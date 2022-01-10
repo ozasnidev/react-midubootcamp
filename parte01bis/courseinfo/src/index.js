@@ -1,17 +1,40 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const Title = ({course}) => <h1>{course}</h1>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const Content = (props) => {
+  return (   
+    <>
+      <p> {props.parts[0]}: {props.exercises[0]} </p>
+      <p> {props.parts[1]}: {props.exercises[1]} </p>
+      <p> {props.parts[2]}: {props.exercises[2]} </p>
+    </> 
+  )
+}
+
+const Result = (props) => <p>Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}</p>
+
+const App = () => {
+  const course = 'Half Stack application development'
+  const part1 = 'Fundamentals of React'
+  const exercises1 = 10
+  const part2 = 'Using props to pass data'
+  const exercises2 = 7
+  const part3 = 'State of a component'
+  const exercises3 = 14
+  const parts = [part1, part2, part3]
+  const exercises = [exercises1, exercises2, exercises3]
+
+  return (
+    <div>
+      <Title course = {course} />
+
+      <Content parts={parts} exercises={exercises}/>      
+      
+      <Result exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}/>
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
